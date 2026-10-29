@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>w1 - 法式海綿蛋糕手作工藝</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        body {
+            background-color: #141210; /* 深色烘焙溫暖基調 */
+            color: #f5f2eb;
+            font-family: system-ui, -apple-system, sans-serif;
+            overflow-x: hidden;
+        }
+        .glass-panel {
+            background: rgba(36, 32, 28, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(217, 119, 6, 0.2);
+        }
+    </style>
+</head>
+<body class="relative">
+
+    <!-- 加分挑戰 1: 動態背景影片 (autoplay loop muted playsinline) -->
+    <div class="fixed inset-0 z-0 opacity-15 pointer-events-none overflow-hidden">
+        <video class="w-full h-full object-cover" autoplay loop muted playsinline>
+            <!-- 烘焙溫暖氛圍背景片源 -->
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-hands-kneading-dough-in-a-bakery-42998-large.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <!-- HUD 導航列 (具備平滑點擊跳轉) -->
+    <nav class="fixed top-6 right-6 z-50 flex gap-2 glass-panel p-2 rounded-full shadow-2xl">
+        <button onclick="scrollToSection(0)" class="hud-btn px-4 py-1.5 text-xs rounded-full bg-amber-600 text-stone-950 font-bold transition">01 食材</button>
+        <button onclick="scrollToSection(1)" class="hud-btn px-4 py-1.5 text-xs rounded-full hover:bg-stone-800 transition">02 打發</button>
+        <button onclick="scrollToSection(2)" class="hud-btn px-4 py-1.5 text-xs rounded-full hover:bg-stone-800 transition">03 烘焙</button>
+        <button onclick="scrollToSection(3)" class="hud-btn px-4 py-1.5 text-xs rounded-full hover:bg-stone-800 transition">04 裝飾</button>
+    </nav>
+
+    <!-- 中央 SVG 曲線 (隨進度平滑畫線) -->
+    <div class="fixed inset-y-0 left-1/2 -translate-x-1/2 w-1 pointer-events-none z-10 hidden md:block">
+        <svg class="h-full w-full overflow-visible" preserveAspectRatio="none">
+            <path id="svgPath" d="M 0 0 L 0 4000" stroke="rgba(217, 119, 6, 0.2)" stroke-width="2" fill="none"/>
+            <path id="svgProgress" d="M 0 0 L 0 4000" stroke="#d97706" stroke-width="3.5" fill="none" stroke-dasharray="4000" stroke-dashoffset="4000"/>
+        </svg>
+    </div>
+
+    <!-- Scrollytelling 內容區塊 -->
+    <div id="container" class="relative z-20">
+        
+        <!-- Hero 區塊 -->
+        <section class="h-screen flex flex-col justify-center items-center text-center px-4">
+            <span class="text-amber-500 font-mono tracking-widest text-sm mb-3">AI DIRECTOR & SCROLLYTELLING WORKSHOP</span>
+            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 bg-gradient-to-r from-amber-400 via-orange-400 to-yellow-500 bg-clip-text text-transparent">
+                法式海綿蛋糕手作工藝
+            </h1>
+            <p class="text-stone-400 max-w-2xl text-sm md:text-base leading-relaxed mb-8">
+                <strong class="text-amber-300">Prompt:</strong> Slow 35mm dolly-in shot at eye level. A golden-brown artisanal sponge cake resting on a rustic wooden board, a gentle dusting of powdered sugar...
+            </p>
+            <div class="animate-bounce text-amber-500 text-sm font-semibold">向下滾動探索完整工序 ↓</div>
+        </section>
+
+        <!-- Phase 01: 食材嚴選 -->
+        <section class="stage-section h-screen flex items-center justify-center px-6">
+            <div class="glass-panel p-8 md:p-10 rounded-3xl max-w-xl w-full shadow-2xl opacity-0 translate-y-12">
+                <span class="text-amber-500 font-mono text-sm tracking-widest uppercase">Phase 01 / 04</span>
+                <h2 class="text-3xl font-bold mt-2 mb-4">嚴選頂級食材</h2>
+                <p class="text-stone-300 text-base leading-relaxed">
+                    選手法國 AOP 認證發酵奶油、產地直送新鮮雞蛋與天然馬達加斯加香草莢。精準的秤重與溫控是成就完美蛋糕口感的第一步。
+                </p>
+            </div>
+        </section>
+
+        <!-- Phase 02: 打發與拌合 -->
+        <section class="stage-section h-screen flex items-center justify-center px-6">
+            <div class="glass-panel p-8 md:p-10 rounded-3xl max-w-xl w-full shadow-2xl opacity-0 translate-y-12">
+                <span class="text-amber-500 font-mono text-sm tracking-widest uppercase">Phase 02 / 04</span>
+                <h2 class="text-3xl font-bold mt-2 mb-4">雙向打發與輕柔拌合</h2>
+                <p class="text-stone-300 text-base leading-relaxed">
+                    全蛋高速打發至帶有濃郁稠度與細緻泡沫，再分次篩入低輕粉。以切拌手法避免消泡，保留完美的空氣感與蓬鬆質地。
+                </p>
+            </div>
+        </section>
+
+        <!-- Phase 03: 溫控烘焙 -->
+        <section class="stage-section h-screen flex items-center justify-center px-6">
+            <div class="glass-panel p-8 md:p-10 rounded-3xl max-w-xl w-full shadow-2xl opacity-0 translate-y-12">
+                <span class="text-amber-500 font-mono text-sm tracking-widest uppercase">Phase 03 / 04</span>
+                <h2 class="text-3xl font-bold mt-2 mb-4">黃金溫控烘焙</h2>
+                <p class="text-stone-300 text-base leading-relaxed">
+                    送入預熱至 170 度的專業烤箱。爐內熱對流讓麵糊均勻受熱，表面漸漸染上誘人的琥珀色澤，空氣中充滿濃郁奶香。
+                </p>
+            </div>
+        </section>
+
+        <!-- Phase 04: 脫模裝飾 -->
+        <section class="stage-section h-screen flex items-center justify-center px-6">
+            <div class="glass-panel p-8 md:p-10 rounded-3xl max-w-xl w-full shadow-2xl opacity-0 translate-y-12">
+                <span class="text-amber-500 font-mono text-sm tracking-widest uppercase">Phase 04 / 04</span>
+                <h2 class="text-3xl font-bold mt-2 mb-4">完美脫模與糖粉點綴</h2>
+                <p class="text-stone-300 text-base leading-relaxed">
+                    出爐倒扣冷卻鎖住水潤口感，俐落脫模後輕撒上一層細緻如雪的糖粉。外酥內潤、層次分明的法式經典就此誕生。
+                </p>
+            </div>
+        </section>
+    </div>
+
+    <!-- 創作心得簡述 (作業規定字數: 50~100字) -->
+    <footer class="py-16 px-6 text-center text-xs text-stone-400 glass-panel border-t border-stone-800 relative z-20">
+        <div class="max-w-2xl mx-auto space-y-2">
+            <h3 class="text-stone-200 font-bold text-sm tracking-wider">【 創作心得簡述 】</h3>
+            <p class="leading-relaxed">
+                本次作業以「法式海綿蛋糕手作工藝」為主題，運用 AI 導演提示詞公式精準定義視覺。前端透過 GSAP 與 SVG 滾動敘事，並將 scrub 調整為 1.5，創造出溫潤滑順的物理阻尼感。向量微動效相較傳統影片更加輕量流暢，完美結合質感美學與高效能。
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // SVG 滾動畫線動畫 (加分挑戰 2: scrub 設為 1.5 體驗阻尼感差異)
+        const path = document.querySelector("#svgProgress");
+        const pathLength = 4000;
+        path.style.strokeDasharray = pathLength;
+        path.style.strokeDashoffset = pathLength;
+
+        gsap.to(path, {
+            strokeDashoffset: 0,
+            ease: "none",
+            scrollTrigger: {
+                trigger: "#container",
+                start: "top top",
+                end: "bottom bottom",
+                scrub: 1.5 // 阻尼感數值微調
+            }
+        });
+
+        // 各階段面板淡入與動畫觸發
+        const sections = document.querySelectorAll(".stage-section");
+        sections.forEach((section) => {
+            const card = section.querySelector("div");
+            gsap.to(card, {
+                opacity: 1,
+                y: 0,
+                duration: 1.2,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: section,
+                    start: "top center+=100",
+                    toggleActions: "play reverse play reverse"
+                }
+            });
+        });
+
+        // HUD 按鈕平滑跳轉函式
+        function scrollToSection(index) {
+            const targets = document.querySelectorAll(".stage-section");
+            if(targets[index]) {
+                targets[index].scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>
