@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="zh-Hant" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>w1 - 法式海綿蛋糕手作工藝</title>
+    <title>法式海綿蛋糕手作工藝 - AI 導演思維</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- GSAP & ScrollTrigger -->
@@ -11,33 +12,32 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <style>
         body {
-            background-color: #1a1512; /* 更溫暖的烘焙深咖啡基調 */
+            background-color: #1c1510;
             color: #fef3c7;
             font-family: system-ui, -apple-system, sans-serif;
             overflow-x: hidden;
         }
-        .glass-panel {
-            background: rgba(41, 31, 24, 0.85);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(245, 158, 11, 0.3);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        .glass-card {
+            background: rgba(44, 32, 24, 0.9);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(245, 158, 11, 0.4);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
         }
     </style>
 </head>
 <body class="relative">
 
-    <!-- 動態背景影片與暖色光影疊加 -->
+    <!-- 暖金色光影動態背景 -->
     <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        <video class="w-full h-full object-cover opacity-30 scale-105 filter saturate-150" autoplay loop muted playsinline>
+        <video class="w-full h-full object-cover opacity-40 filter saturate-150" autoplay loop muted playsinline>
             <source src="https://assets.mixkit.co/videos/preview/mixkit-hands-kneading-dough-in-a-bakery-42998-large.mp4" type="video/mp4">
         </video>
-        <!-- 溫暖金黃色光暈濾鏡 -->
-        <div class="absolute inset-0 bg-gradient-to-tr from-amber-950/70 via-amber-900/40 to-amber-600/20 mix-blend-overlay"></div>
+        <div class="absolute inset-0 bg-gradient-to-tr from-amber-950/80 via-amber-900/50 to-amber-600/30 mix-blend-overlay"></div>
     </div>
 
     <!-- HUD 導航列 -->
-    <nav class="fixed top-6 right-6 z-50 flex gap-2 glass-panel p-2 rounded-full shadow-2xl">
-        <button onclick="scrollToPhase(0)" class="px-4 py-1.5 text-xs font-medium rounded-full bg-amber-500 text-stone-950 transition hover:bg-amber-400 font-bold">01</button>
+    <nav class="fixed top-6 right-6 z-50 flex gap-2 glass-card p-2 rounded-full shadow-2xl">
+        <button onclick="scrollToPhase(0)" class="px-4 py-1.5 text-xs font-bold rounded-full bg-amber-500 text-stone-950 transition hover:bg-amber-400">01</button>
         <button onclick="scrollToPhase(1)" class="px-4 py-1.5 text-xs font-medium rounded-full text-amber-200 hover:text-white transition hover:bg-stone-800">02</button>
         <button onclick="scrollToPhase(2)" class="px-4 py-1.5 text-xs font-medium rounded-full text-amber-200 hover:text-white transition hover:bg-stone-800">03</button>
         <button onclick="scrollToPhase(3)" class="px-4 py-1.5 text-xs font-medium rounded-full text-amber-200 hover:text-white transition hover:bg-stone-800">04</button>
@@ -46,36 +46,35 @@
     <!-- 中央 SVG 滾動軌跡線 -->
     <div class="fixed inset-0 z-10 pointer-events-none flex justify-center">
         <svg class="h-full w-24" viewBox="0 0 100 800" preserveAspectRatio="none">
-            <path id="svgPath" d="M50 0 L50 800" stroke="rgba(245, 158, 11, 0.3)" stroke-width="3" fill="none" stroke-dasharray="8 8"/>
+            <path d="M50 0 L50 800" stroke="rgba(245, 158, 11, 0.3)" stroke-width="3" fill="none" stroke-dasharray="8 8"/>
             <path id="svgProgress" d="M50 0 L50 800" stroke="#f59e0b" stroke-width="5" fill="none" stroke-dasharray="800" stroke-dashoffset="800"/>
         </svg>
     </div>
 
-    <!-- 內容滾動敘事區 (Scrollytelling) -->
+    <!-- 內容滾動區 -->
     <main class="relative z-20">
         
-        <!-- Hero 區塊與 AI 導演提示詞 -->
+        <!-- Hero 區塊 -->
         <section class="min-h-screen flex flex-col justify-center items-center px-6 text-center py-20">
-            <span class="text-amber-400 font-mono tracking-widest text-sm mb-3 uppercase bg-amber-950/60 px-4 py-1 rounded-full border border-amber-600/40">AI Director Thinking Formulation</span>
-            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 bg-gradient-to-r from-amber-200 via-amber-400 to-amber-600 bg-clip-text text-transparent drop-shadow-md">
+            <span class="text-amber-400 font-mono tracking-widest text-xs mb-3 uppercase bg-amber-950/80 px-4 py-1.5 rounded-full border border-amber-600/50">AI Director Thinking Formulation</span>
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 bg-gradient-to-r from-amber-200 via-amber-400 to-amber-600 bg-clip-text text-transparent">
                 法式海綿蛋糕手作工藝
             </h1>
-            <!-- 嚴格對應鏡頭運鏡、焦段、主體與光影的導演提示詞 -->
-            <p class="text-amber-100/90 max-w-2xl text-sm md:text-base leading-relaxed mb-8 glass-panel p-6 rounded-2xl shadow-xl text-left">
+            <p class="text-amber-100/90 max-w-2xl text-sm md:text-base leading-relaxed mb-8 glass-card p-6 rounded-2xl text-left">
                 <strong class="text-amber-400 block mb-2 font-mono text-xs tracking-wider">🎬 CINEMATIC PROMPT:</strong>
                 Slow 35mm dolly-in shot at eye level. A golden-brown artisanal French sponge cake resting on a rustic wooden board, a gentle dusting of shimmering powdered sugar. Minimalist warm baker's counter, soft morning golden hour backlighting filtering through steam, soft amber light motes floating in air. Shot on Arri Alexa, cinematic 4K, 24fps.
             </p>
-            <div class="animate-bounce text-amber-400 text-sm font-medium">向下滾動展開工藝流程 ↓</div>
+            <div class="animate-bounce text-amber-400 text-sm font-medium">向下滾動探索完整工藝 ↓</div>
         </section>
 
         <!-- Phase 01 -->
         <section class="phase-section min-h-screen flex items-center px-6 md:px-24 py-12">
-            <div class="glass-panel p-8 md:p-12 rounded-3xl max-w-xl shadow-2xl border-l-4 border-amber-500">
-                <div class="overflow-hidden rounded-2xl mb-6 h-48 border border-amber-500/20 shadow-inner">
-                    <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=800&q=80" alt="頂級烘焙食材" class="w-full h-full object-cover transform hover:scale-105 transition duration-700">
+            <div class="glass-card p-8 md:p-10 rounded-3xl max-w-xl shadow-2xl border-l-4 border-amber-500 w-full">
+                <div class="overflow-hidden rounded-2xl mb-6 h-52 border border-amber-500/30">
+                    <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=800&q=80" alt="頂級食材" class="w-full h-full object-cover">
                 </div>
                 <span class="text-xs font-mono text-amber-400 tracking-wider">PHASE 01 / 04</span>
-                <h2 class="text-2xl md:text-4xl font-bold mt-2 mb-4 text-amber-200">嚴選頂級食材</h2>
+                <h2 class="text-2xl md:text-3xl font-bold mt-2 mb-3 text-amber-200">嚴選頂級食材</h2>
                 <p class="text-amber-100/80 leading-relaxed text-sm md:text-base">
                     嚴選法國 AOP 認證發酵奶油，產地直達新鮮雞蛋與天然馬達加斯加香草莢。精準的秤重與溫控是成就完美蛋糕口感的第一步。
                 </p>
@@ -84,12 +83,12 @@
 
         <!-- Phase 02 -->
         <section class="phase-section min-h-screen flex items-center justify-end px-6 md:px-24 py-12">
-            <div class="glass-panel p-8 md:p-12 rounded-3xl max-w-xl shadow-2xl border-l-4 border-amber-500">
-                <div class="overflow-hidden rounded-2xl mb-6 h-48 border border-amber-500/20 shadow-inner">
-                    <img src="https://images.unsplash.com/photo-1516714435131-44d6b64dc6a2?auto=format&fit=crop&w=800&q=80" alt="打發與翻拌" class="w-full h-full object-cover transform hover:scale-105 transition duration-700">
+            <div class="glass-card p-8 md:p-10 rounded-3xl max-w-xl shadow-2xl border-l-4 border-amber-500 w-full">
+                <div class="overflow-hidden rounded-2xl mb-6 h-52 border border-amber-500/30">
+                    <img src="https://images.unsplash.com/photo-1516714435131-44d6b64dc6a2?auto=format&fit=crop&w=800&q=80" alt="打發與翻拌" class="w-full h-full object-cover">
                 </div>
                 <span class="text-xs font-mono text-amber-400 tracking-wider">PHASE 02 / 04</span>
-                <h2 class="text-2xl md:text-4xl font-bold mt-2 mb-4 text-amber-200">完美打發與翻拌</h2>
+                <h2 class="text-2xl md:text-3xl font-bold mt-2 mb-3 text-amber-200">完美打發與翻拌</h2>
                 <p class="text-amber-100/80 leading-relaxed text-sm md:text-base">
                     全蛋透過溫水打發至帶有濃郁光澤與空氣感。加入低筋麵粉後，以輕柔手腕進行立體切拌，保留綿密氣泡不消泡。
                 </p>
@@ -98,26 +97,26 @@
 
         <!-- Phase 03 -->
         <section class="phase-section min-h-screen flex items-center px-6 md:px-24 py-12">
-            <div class="glass-panel p-8 md:p-12 rounded-3xl max-w-xl shadow-2xl border-l-4 border-amber-500">
-                <div class="overflow-hidden rounded-2xl mb-6 h-48 border border-amber-500/20 shadow-inner">
-                    <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80" alt="黃金烤爐烘焙" class="w-full h-full object-cover transform hover:scale-105 transition duration-700">
+            <div class="glass-card p-8 md:p-10 rounded-3xl max-w-xl shadow-2xl border-l-4 border-amber-500 w-full">
+                <div class="overflow-hidden rounded-2xl mb-6 h-52 border border-amber-500/30">
+                    <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80" alt="黃金烤爐烘焙" class="w-full h-full object-cover">
                 </div>
                 <span class="text-xs font-mono text-amber-400 tracking-wider">PHASE 03 / 04</span>
-                <h2 class="text-2xl md:text-4xl font-bold mt-2 mb-4 text-amber-200">黃金溫控烘焙</h2>
+                <h2 class="text-2xl md:text-3xl font-bold mt-2 mb-3 text-amber-200">黃金溫控烘焙</h2>
                 <p class="text-amber-100/80 leading-relaxed text-sm md:text-base">
-                    送入預熱爐中，以黃金弧度溫度慢慢膨脹。爐門透出溫暖焦糖色光澤，空氣中瀰漫著濃郁的奶油香氣。
+                    送入預熱烤爐中，以黃金弧度溫度慢慢膨脹。爐門透出溫暖焦糖色光澤，空氣中瀰漫著濃郁的奶油香氣。
                 </p>
             </div>
         </section>
 
         <!-- Phase 04 -->
         <section class="phase-section min-h-screen flex items-center justify-end px-6 md:px-24 py-12 pb-32">
-            <div class="glass-panel p-8 md:p-12 rounded-3xl max-w-xl shadow-2xl border-l-4 border-amber-500">
-                <div class="overflow-hidden rounded-2xl mb-6 h-48 border border-amber-500/20 shadow-inner">
-                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80" alt="精緻成品蛋糕" class="w-full h-full object-cover transform hover:scale-105 transition duration-700">
+            <div class="glass-card p-8 md:p-10 rounded-3xl max-w-xl shadow-2xl border-l-4 border-amber-500 w-full">
+                <div class="overflow-hidden rounded-2xl mb-6 h-52 border border-amber-500/30">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80" alt="精緻成品蛋糕" class="w-full h-full object-cover">
                 </div>
                 <span class="text-xs font-mono text-amber-400 tracking-wider">PHASE 04 / 04</span>
-                <h2 class="text-2xl md:text-4xl font-bold mt-2 mb-4 text-amber-200">細緻成品與品味</h2>
+                <h2 class="text-2xl md:text-3xl font-bold mt-2 mb-3 text-amber-200">細緻成品與品味</h2>
                 <p class="text-amber-100/80 leading-relaxed text-sm md:text-base">
                     出爐冷卻後輕灑雪白糖粉，切開剖面呈現如雲朵般細緻的蜂巢組織。每一口都是法式職人工藝的完美極致。
                 </p>
@@ -126,11 +125,10 @@
 
     </main>
 
-    <!-- GSAP 動畫互動邏輯 -->
+    <!-- GSAP 動畫與互動 -->
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
-        // SVG 曲線進度條動畫
         const path = document.querySelector("#svgProgress");
         const length = path.getTotalLength();
         path.style.strokeDasharray = length;
@@ -143,14 +141,13 @@
                 trigger: "main",
                 start: "top top",
                 end: "bottom bottom",
-                scrub: 1.5 // 物理阻尼感調校
+                scrub: 1.5
             }
         });
 
-        // 各階段文字與圖片淡入動畫
         gsap.utils.toArray(".phase-section").forEach((section) => {
-            gsap.fromTo(section.querySelector(".glass-panel"), 
-                { opacity: 0, y: 60 },
+            gsap.fromTo(section.querySelector(".glass-card"), 
+                { opacity: 0, y: 50 },
                 {
                     opacity: 1,
                     y: 0,
@@ -165,7 +162,6 @@
             );
         });
 
-        // HUD 快速平滑跳轉函式
         function scrollToPhase(index) {
             const sections = document.querySelectorAll(".phase-section");
             if (sections[index]) {
