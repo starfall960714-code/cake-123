@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh-Hant" class="scroll-smooth">
 <head>
@@ -12,27 +11,42 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <style>
         body {
-            background-color: #1c1510;
+            background-color: #120e0a;
             color: #fef3c7;
             font-family: system-ui, -apple-system, sans-serif;
             overflow-x: hidden;
         }
         .glass-card {
-            background: rgba(44, 32, 24, 0.9);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(245, 158, 11, 0.4);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            background: rgba(30, 20, 14, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(245, 158, 11, 0.35);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+        }
+        /* 背景大圖漸入漸出基礎設定 */
+        .bg-slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+        }
+        .bg-slide.active {
+            opacity: 1;
         }
     </style>
 </head>
 <body class="relative">
 
-    <!-- 暖金色光影動態背景 -->
+    <!-- 滿版階段背景大圖群組 (漸入漸出) -->
     <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        <video class="w-full h-full object-cover opacity-40 filter saturate-150" autoplay loop muted playsinline>
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-hands-kneading-dough-in-a-bakery-42998-large.mp4" type="video/mp4">
-        </video>
-        <div class="absolute inset-0 bg-gradient-to-tr from-amber-950/80 via-amber-900/50 to-amber-600/30 mix-blend-overlay"></div>
+        <div id="bg-hero" class="bg-slide active" style="background-image: linear-gradient(to bottom, rgba(18,14,10,0.6), rgba(18,14,10,0.9)), url('https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1920&q=80');"></div>
+        <div id="bg-phase1" class="bg-slide" style="background-image: linear-gradient(to bottom, rgba(18,14,10,0.7), rgba(18,14,10,0.9)), url('https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=1920&q=80');"></div>
+        <div id="bg-phase2" class="bg-slide" style="background-image: linear-gradient(to bottom, rgba(18,14,10,0.7), rgba(18,14,10,0.9)), url('https://images.unsplash.com/photo-1516714435131-44d6b64dc6a2?auto=format&fit=crop&w=1920&q=80');"></div>
+        <div id="bg-phase3" class="bg-slide" style="background-image: linear-gradient(to bottom, rgba(18,14,10,0.7), rgba(18,14,10,0.9)), url('https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1920&q=80');"></div>
+        <div id="bg-phase4" class="bg-slide" style="background-image: linear-gradient(to bottom, rgba(18,14,10,0.7), rgba(18,14,10,0.9)), url('https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1920&q=80');"></div>
+        <!-- 暖色光影遮罩 -->
+        <div class="absolute inset-0 bg-amber-950/20 mix-blend-overlay"></div>
     </div>
 
     <!-- HUD 導航列 -->
@@ -51,16 +65,16 @@
         </svg>
     </div>
 
-    <!-- 內容滾動區 -->
+    <!-- 內容滾動區 (文字全部置中) -->
     <main class="relative z-20">
         
         <!-- Hero 區塊 -->
-        <section class="min-h-screen flex flex-col justify-center items-center px-6 text-center py-20">
+        <section id="sec-hero" data-bg="bg-hero" class="phase-section min-h-screen flex flex-col justify-center items-center px-6 text-center py-20">
             <span class="text-amber-400 font-mono tracking-widest text-xs mb-3 uppercase bg-amber-950/80 px-4 py-1.5 rounded-full border border-amber-600/50">AI Director Thinking Formulation</span>
             <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 bg-gradient-to-r from-amber-200 via-amber-400 to-amber-600 bg-clip-text text-transparent">
                 法式海綿蛋糕手作工藝
             </h1>
-            <p class="text-amber-100/90 max-w-2xl text-sm md:text-base leading-relaxed mb-8 glass-card p-6 rounded-2xl text-left">
+            <p class="text-amber-100/90 max-w-2xl text-sm md:text-base leading-relaxed mb-8 glass-card p-6 md:p-8 rounded-3xl text-center">
                 <strong class="text-amber-400 block mb-2 font-mono text-xs tracking-wider">🎬 CINEMATIC PROMPT:</strong>
                 Slow 35mm dolly-in shot at eye level. A golden-brown artisanal French sponge cake resting on a rustic wooden board, a gentle dusting of shimmering powdered sugar. Minimalist warm baker's counter, soft morning golden hour backlighting filtering through steam, soft amber light motes floating in air. Shot on Arri Alexa, cinematic 4K, 24fps.
             </p>
@@ -68,56 +82,44 @@
         </section>
 
         <!-- Phase 01 -->
-        <section class="phase-section min-h-screen flex items-center px-6 md:px-24 py-12">
-            <div class="glass-card p-8 md:p-10 rounded-3xl max-w-xl shadow-2xl border-l-4 border-amber-500 w-full">
-                <div class="overflow-hidden rounded-2xl mb-6 h-52 border border-amber-500/30">
-                    <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=800&q=80" alt="頂級食材" class="w-full h-full object-cover">
-                </div>
+        <section id="sec-1" data-bg="bg-phase1" class="phase-section min-h-screen flex items-center justify-center px-6 py-20">
+            <div class="glass-card p-8 md:p-12 rounded-3xl max-w-2xl shadow-2xl border-t-4 border-amber-500 text-center">
                 <span class="text-xs font-mono text-amber-400 tracking-wider">PHASE 01 / 04</span>
-                <h2 class="text-2xl md:text-3xl font-bold mt-2 mb-3 text-amber-200">嚴選頂級食材</h2>
-                <p class="text-amber-100/80 leading-relaxed text-sm md:text-base">
+                <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-4 text-amber-200">嚴選頂級食材</h2>
+                <p class="text-amber-100/90 leading-relaxed text-base md:text-lg">
                     嚴選法國 AOP 認證發酵奶油，產地直達新鮮雞蛋與天然馬達加斯加香草莢。精準的秤重與溫控是成就完美蛋糕口感的第一步。
                 </p>
             </div>
         </section>
 
         <!-- Phase 02 -->
-        <section class="phase-section min-h-screen flex items-center justify-end px-6 md:px-24 py-12">
-            <div class="glass-card p-8 md:p-10 rounded-3xl max-w-xl shadow-2xl border-l-4 border-amber-500 w-full">
-                <div class="overflow-hidden rounded-2xl mb-6 h-52 border border-amber-500/30">
-                    <img src="https://images.unsplash.com/photo-1516714435131-44d6b64dc6a2?auto=format&fit=crop&w=800&q=80" alt="打發與翻拌" class="w-full h-full object-cover">
-                </div>
+        <section id="sec-2" data-bg="bg-phase2" class="phase-section min-h-screen flex items-center justify-center px-6 py-20">
+            <div class="glass-card p-8 md:p-12 rounded-3xl max-w-2xl shadow-2xl border-t-4 border-amber-500 text-center">
                 <span class="text-xs font-mono text-amber-400 tracking-wider">PHASE 02 / 04</span>
-                <h2 class="text-2xl md:text-3xl font-bold mt-2 mb-3 text-amber-200">完美打發與翻拌</h2>
-                <p class="text-amber-100/80 leading-relaxed text-sm md:text-base">
+                <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-4 text-amber-200">完美打發與翻拌</h2>
+                <p class="text-amber-100/90 leading-relaxed text-base md:text-lg">
                     全蛋透過溫水打發至帶有濃郁光澤與空氣感。加入低筋麵粉後，以輕柔手腕進行立體切拌，保留綿密氣泡不消泡。
                 </p>
             </div>
         </section>
 
         <!-- Phase 03 -->
-        <section class="phase-section min-h-screen flex items-center px-6 md:px-24 py-12">
-            <div class="glass-card p-8 md:p-10 rounded-3xl max-w-xl shadow-2xl border-l-4 border-amber-500 w-full">
-                <div class="overflow-hidden rounded-2xl mb-6 h-52 border border-amber-500/30">
-                    <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80" alt="黃金烤爐烘焙" class="w-full h-full object-cover">
-                </div>
+        <section id="sec-3" data-bg="bg-phase3" class="phase-section min-h-screen flex items-center justify-center px-6 py-20">
+            <div class="glass-card p-8 md:p-12 rounded-3xl max-w-2xl shadow-2xl border-t-4 border-amber-500 text-center">
                 <span class="text-xs font-mono text-amber-400 tracking-wider">PHASE 03 / 04</span>
-                <h2 class="text-2xl md:text-3xl font-bold mt-2 mb-3 text-amber-200">黃金溫控烘焙</h2>
-                <p class="text-amber-100/80 leading-relaxed text-sm md:text-base">
+                <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-4 text-amber-200">黃金溫控烘焙</h2>
+                <p class="text-amber-100/90 leading-relaxed text-base md:text-lg">
                     送入預熱烤爐中，以黃金弧度溫度慢慢膨脹。爐門透出溫暖焦糖色光澤，空氣中瀰漫著濃郁的奶油香氣。
                 </p>
             </div>
         </section>
 
         <!-- Phase 04 -->
-        <section class="phase-section min-h-screen flex items-center justify-end px-6 md:px-24 py-12 pb-32">
-            <div class="glass-card p-8 md:p-10 rounded-3xl max-w-xl shadow-2xl border-l-4 border-amber-500 w-full">
-                <div class="overflow-hidden rounded-2xl mb-6 h-52 border border-amber-500/30">
-                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80" alt="精緻成品蛋糕" class="w-full h-full object-cover">
-                </div>
+        <section id="sec-4" data-bg="bg-phase4" class="phase-section min-h-screen flex items-center justify-center px-6 py-20 pb-32">
+            <div class="glass-card p-8 md:p-12 rounded-3xl max-w-2xl shadow-2xl border-t-4 border-amber-500 text-center">
                 <span class="text-xs font-mono text-amber-400 tracking-wider">PHASE 04 / 04</span>
-                <h2 class="text-2xl md:text-3xl font-bold mt-2 mb-3 text-amber-200">細緻成品與品味</h2>
-                <p class="text-amber-100/80 leading-relaxed text-sm md:text-base">
+                <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-4 text-amber-200">細緻成品與品味</h2>
+                <p class="text-amber-100/90 leading-relaxed text-base md:text-lg">
                     出爐冷卻後輕灑雪白糖粉，切開剖面呈現如雲朵般細緻的蜂巢組織。每一口都是法式職人工藝的完美極致。
                 </p>
             </div>
@@ -125,10 +127,11 @@
 
     </main>
 
-    <!-- GSAP 動畫與互動 -->
+    <!-- GSAP 動畫與背景漸入漸出互動 -->
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
+        // SVG 進度條
         const path = document.querySelector("#svgProgress");
         const length = path.getTotalLength();
         path.style.strokeDasharray = length;
@@ -145,7 +148,12 @@
             }
         });
 
-        gsap.utils.toArray(".phase-section").forEach((section) => {
+        // 區塊文字淡入與背景大圖漸換
+        const sections = document.querySelectorAll(".phase-section");
+        sections.forEach((section) => {
+            const bgId = section.getAttribute("data-bg");
+            
+            // 文字進場動畫
             gsap.fromTo(section.querySelector(".glass-card"), 
                 { opacity: 0, y: 50 },
                 {
@@ -154,18 +162,37 @@
                     duration: 1,
                     scrollTrigger: {
                         trigger: section,
-                        start: "top 75%",
+                        start: "top 70%",
                         end: "top 40%",
                         scrub: 1.5
                     }
                 }
             );
+
+            // 滾動切換背景大圖
+            ScrollTrigger.create({
+                trigger: section,
+                start: "top 50%",
+                end: "bottom 50%",
+                onEnter: () => switchBackground(bgId),
+                onEnterBack: () => switchBackground(bgId)
+            });
         });
 
+        function switchBackground(bgId) {
+            document.querySelectorAll(".bg-slide").forEach(slide => {
+                slide.classList.remove("active");
+            });
+            const target = document.getElementById(bgId);
+            if (target) {
+                target.classList.add("active");
+            }
+        }
+
         function scrollToPhase(index) {
-            const sections = document.querySelectorAll(".phase-section");
-            if (sections[index]) {
-                sections[index].scrollIntoView({ behavior: 'smooth' });
+            const targets = [document.getElementById('sec-hero'), document.getElementById('sec-1'), document.getElementById('sec-2'), document.getElementById('sec-3'), document.getElementById('sec-4')];
+            if (targets[index]) {
+                targets[index].scrollIntoView({ behavior: 'smooth' });
             }
         }
     </script>
